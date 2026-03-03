@@ -17,6 +17,7 @@
 		8A3F84242AC4C891005E2EE8 /* models in Resources */ = {isa = PBXBuildFile; fileRef = 8A3F84232AC4C891005E2EE8 /* models */; };
 		8A907F332AC7138A006146EA /* LibLlama.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A907F322AC7134E006146EA /* LibLlama.swift */; };
 		8A9F7C4D2AC332EE008AE1EA /* LlamaState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F7C4C2AC332EE008AE1EA /* LlamaState.swift */; };
+		AA000001AABB000000000001 /* HTTPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AABB000000000002 /* HTTPServer.swift */; };
 		DD84C9FD2D747FED007778EC /* llama.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD84C9FC2D747FED007778EC /* llama.xcframework */; };
 		DD84C9FE2D747FED007778EC /* llama.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD84C9FC2D747FED007778EC /* llama.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F1FE20E22B465ECA00B45541 /* LoadCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE20E12B465EC900B45541 /* LoadCustomButton.swift */; };
@@ -48,8 +49,9 @@
 		8A3F84232AC4C891005E2EE8 /* models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = models; path = llama.swiftui/Resources/models; sourceTree = "<group>"; };
 		8A907F322AC7134E006146EA /* LibLlama.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibLlama.swift; sourceTree = "<group>"; };
 		8A9F7C4C2AC332EE008AE1EA /* LlamaState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LlamaState.swift; sourceTree = "<group>"; };
-		DD84C9FC2D747FED007778EC /* llama.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = llama.xcframework; path = "../../build-apple/llama.xcframework"; sourceTree = "<group>"; };
-		DF2D2FE72B4A59BE00FCB72D /* llama.cpp */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = llama.cpp; path = ../..; sourceTree = "<group>"; };
+		AA000001AABB000000000002 /* HTTPServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPServer.swift; sourceTree = "<group>"; };
+		DD84C9FC2D747FED007778EC /* llama.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = llama.xcframework; path = "llama.cpp/build-apple/llama.xcframework"; sourceTree = "<group>"; };
+		DF2D2FE72B4A59BE00FCB72D /* llama.cpp */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = llama.cpp; path = llama.cpp; sourceTree = "<group>"; };
 		F1FE20E12B465EC900B45541 /* LoadCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadCustomButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +96,7 @@
 				8A9F7C4B2AC332DC008AE1EA /* Models */,
 				8A9F7C4A2AC332BF008AE1EA /* UI */,
 				8A1C83762AC328BD0096AF73 /* llama_swiftuiApp.swift */,
+				AA000001AABB000000000002 /* HTTPServer.swift */,
 				8A1C837A2AC328BE0096AF73 /* Assets.xcassets */,
 			);
 			path = llama.swiftui;
@@ -230,6 +233,7 @@
 				F1FE20E22B465ECA00B45541 /* LoadCustomButton.swift in Sources */,
 				8A907F332AC7138A006146EA /* LibLlama.swift in Sources */,
 				8A9F7C4D2AC332EE008AE1EA /* LlamaState.swift in Sources */,
+				AA000001AABB000000000001 /* HTTPServer.swift in Sources */,
 				8A1C83792AC328BD0096AF73 /* ContentView.swift in Sources */,
 				8A1C83772AC328BD0096AF73 /* llama_swiftuiApp.swift in Sources */,
 				7FA3D2B32B2EA2F600543F92 /* DownloadButton.swift in Sources */,

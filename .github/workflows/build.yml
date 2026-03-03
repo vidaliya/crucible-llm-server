@@ -16,7 +16,14 @@ jobs:
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode_16.2.app
 
-      - name: Build for iOS (ad-hoc signing)
+      - name: Build llama.cpp xcframework
+        run: |
+          cd llama.cpp
+          chmod +x build-xcframework.sh
+          ./build-xcframework.sh
+          ls -la build-apple/llama.xcframework/
+
+      - name: Build iOS app
         run: |
           xcodebuild build \
             -project llama.swiftui.xcodeproj \
@@ -32,6 +39,7 @@ jobs:
       - name: Package IPA
         run: |
           APP_PATH=$(find build -name "*.app" -type d | head -1)
+          echo "Found app at: $APP_PATH"
           mkdir -p Payload
           cp -r "$APP_PATH" Payload/
           zip -r CrucibleLLM.ipa Payload/
