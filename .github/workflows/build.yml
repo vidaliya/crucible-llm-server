@@ -1,0 +1,43 @@
+name: Build iOS IPA
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_16.2.app
+
+      - name: Build for iOS (ad-hoc signing)
+        run: |
+          xcodebuild build \
+            -project llama.swiftui.xcodeproj \
+            -scheme llama.swiftui \
+            -destination 'generic/platform=iOS' \
+            -configuration Release \
+            CODE_SIGN_IDENTITY="-" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            DEVELOPMENT_TEAM="" \
+            -derivedDataPath build
+
+      - name: Package IPA
+        run: |
+          APP_PATH=$(find build -name "*.app" -type d | head -1)
+          mkdir -p Payload
+          cp -r "$APP_PATH" Payload/
+          zip -r CrucibleLLM.ipa Payload/
+
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: CrucibleLLM
+          path: CrucibleLLM.ipa
