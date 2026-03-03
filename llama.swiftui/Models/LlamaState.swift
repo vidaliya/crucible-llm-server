@@ -254,6 +254,11 @@ class LlamaState: ObservableObject {
             cleaned = String(cleaned[thinkEnd.upperBound...])
         }
 
+        // Stop at first <|im_end|> — model may echo the prompt in a loop
+        if let endTag = cleaned.range(of: "<|im_end|>") {
+            cleaned = String(cleaned[..<endTag.lowerBound])
+        }
+
         return cleaned.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
