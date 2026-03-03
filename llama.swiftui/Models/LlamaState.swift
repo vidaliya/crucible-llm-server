@@ -249,9 +249,14 @@ class LlamaState: ObservableObject {
 
         // Strip <think>...</think> blocks from Qwen-style reasoning models
         var cleaned = result
-        if let thinkStart = cleaned.range(of: "<think>"),
-           let thinkEnd = cleaned.range(of: "</think>") {
-            cleaned = String(cleaned[thinkEnd.upperBound...])
+        if let thinkStart = cleaned.range(of: "<think>") {
+            if let thinkEnd = cleaned.range(of: "</think>") {
+                // Full think block — take everything after it
+                cleaned = String(cleaned[thinkEnd.upperBound...])
+            } else {
+                // Think block consumed all tokens — take everything before it
+                cleaned = String(cleaned[..<thinkStart.lowerBound])
+            }
         }
 
         // Stop at first <|im_end|> — model may echo the prompt in a loop
