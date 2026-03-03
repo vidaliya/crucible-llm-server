@@ -246,6 +246,14 @@ class LlamaState: ObservableObject {
         }
 
         await llamaContext.clear()
-        return result.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        // Strip <think>...</think> blocks from Qwen-style reasoning models
+        var cleaned = result
+        if let thinkStart = cleaned.range(of: "<think>"),
+           let thinkEnd = cleaned.range(of: "</think>") {
+            cleaned = String(cleaned[thinkEnd.upperBound...])
+        }
+
+        return cleaned.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }

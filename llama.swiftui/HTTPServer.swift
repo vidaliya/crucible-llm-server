@@ -131,22 +131,14 @@ class HTTPServer {
             return
         }
 
-        // Build prompt from messages
+        // Build prompt using ChatML format (works with Qwen, Gemma, most chat models)
         var prompt = ""
         for msg in messages {
             let role = msg["role"] as? String ?? "user"
             let content = msg["content"] as? String ?? ""
-            switch role {
-            case "system":
-                prompt += "System: \(content)\n"
-            case "user":
-                prompt += "User: \(content)\nAssistant: "
-            case "assistant":
-                prompt += "\(content)\n"
-            default:
-                prompt += "\(content)\n"
-            }
+            prompt += "<|im_start|>\(role)\n\(content)<|im_end|>\n"
         }
+        prompt += "<|im_start|>assistant\n"
 
         let maxTokens = json["max_tokens"] as? Int ?? 500
 
