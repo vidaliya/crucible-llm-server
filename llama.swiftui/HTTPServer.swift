@@ -132,7 +132,12 @@ class HTTPServer {
         }
 
         // Build prompt using ChatML format (works with Qwen, Gemma, most chat models)
+        // Inject /no_think by default unless the caller explicitly includes a system message
         var prompt = ""
+        let hasSystemMessage = messages.contains { ($0["role"] as? String) == "system" }
+        if !hasSystemMessage {
+            prompt += "<|im_start|>system\n/no_think\nBe concise and helpful.<|im_end|>\n"
+        }
         for msg in messages {
             let role = msg["role"] as? String ?? "user"
             let content = msg["content"] as? String ?? ""

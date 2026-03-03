@@ -77,7 +77,7 @@ actor LlamaContext {
         print("Using \(n_threads) threads")
 
         var ctx_params = llama_context_default_params()
-        ctx_params.n_ctx = 2048
+        ctx_params.n_ctx = 1024  // reduced from 2048 to lower KV cache memory on iPad
         ctx_params.n_threads       = Int32(n_threads)
         ctx_params.n_threads_batch = Int32(n_threads)
 
