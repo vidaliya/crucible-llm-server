@@ -117,6 +117,7 @@ actor LlamaContext {
     func completion_init(text: String) {
         print("attempting to complete \"\(text)\"")
 
+        is_done = false
         tokens_list = tokenize(text: text, add_bos: true)
         temporary_invalid_cchars = []
 
